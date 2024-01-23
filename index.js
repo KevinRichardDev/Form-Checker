@@ -2,29 +2,39 @@ const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
 
-const pseudoChecker = () => {};
+const pseudoChecker = (value) => {
+  const pseudoContainer = document.querySelector('.pseudo-container');
+  const errorDisplay = document.querySelector('.pseudo-container > span');
+  console.log(value);
+};
 
-const emailChecker = () => {};
+const emailChecker = (value) => {
+  console.log(value);
+};
 
-const passwordChecker = () => {};
+const passwordChecker = (value) => {
+  console.log(value);
+};
 
-const confirmChecker = () => {};
+const confirmChecker = (value) => {
+  console.log(value);
+};
 
 
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     switch (e.target.id) {
       case "pseudo":
-        pseudoChecker()
+        pseudoChecker(e.target.value);
         break;
       case "email":
-        emailChecker()
+        emailChecker(e.target.value)
         break;
       case "password":
-        passwordChecker()
+        passwordChecker(e.target.value)
         break;
       case "confirm":
-        confirmChecker()
+        confirmChecker(e.target.value)
         break;
       default:
         nul;
