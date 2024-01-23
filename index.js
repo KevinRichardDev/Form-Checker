@@ -2,7 +2,7 @@ const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
 
-const progressBar = document.getElementById('progress-bar');
+const progressBar = document.getElementById("progress-bar");
 
 let pseudo, email, password, confirmPass;
 
@@ -40,11 +40,11 @@ const pseudoChecker = (value) => {
 // Input email --------------------------------------------------
 
 const emailChecker = (value) => {
-  if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)){
-    errorDisplay('email', "Le mail n'est pas valide");
-    email = null
+  if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
+    errorDisplay("email", "Le mail n'est pas valide");
+    email = null;
   } else {
-    errorDisplay('email', "", true);
+    errorDisplay("email", "", true);
     email = value;
   }
 };
@@ -52,7 +52,28 @@ const emailChecker = (value) => {
 // Input password -------------------------------------------------
 
 const passwordChecker = (value) => {
+  progressBar.classList = "";
   
+  if (
+    !value.match(
+      /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
+    )
+  ) {
+    errorDisplay(
+      "password",
+      "Minimum de 8 caractères, une majuscule, un chiffre et un caractère spécial"
+    );
+    progressBar.classList.add("progressRed");
+    password = null;
+  } else if (value.length < 12) {
+    progressBar.classList.add("progressBlue");
+    errorDisplay("password", "", true);
+    password = value;
+  } else {
+    progressBar.classList.add("progressGreen");
+    errorDisplay("password", "", true);
+    password = value;
+  }
 };
 
 const confirmChecker = (value) => {
