@@ -2,6 +2,8 @@ const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
 
+const progressBar = document.getElementById('progress-bar');
+
 let pseudo, email, password, confirmPass;
 
 const errorDisplay = (tag, message, valid) => {
@@ -16,6 +18,8 @@ const errorDisplay = (tag, message, valid) => {
     span.textContent = message;
   }
 };
+
+// Input Pseudo ---------------------------------------------
 
 const pseudoChecker = (value) => {
   if (value.length > 0 && (value.length < 3 || value.length > 20)) {
@@ -33,12 +37,22 @@ const pseudoChecker = (value) => {
   }
 };
 
+// Input email --------------------------------------------------
+
 const emailChecker = (value) => {
-  console.log(value);
+  if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)){
+    errorDisplay('email', "Le mail n'est pas valide");
+    email = null
+  } else {
+    errorDisplay('email', "", true);
+    email = value;
+  }
 };
 
+// Input password -------------------------------------------------
+
 const passwordChecker = (value) => {
-  console.log(value);
+  
 };
 
 const confirmChecker = (value) => {
